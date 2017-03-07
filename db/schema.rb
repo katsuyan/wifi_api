@@ -10,6 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170307145459) do
+
+  create_table "spots", force: :cascade do |t|
+    t.string   "name"
+    t.string   "en_name"
+    t.string   "status"
+    t.string   "category"
+    t.string   "place"
+    t.string   "postalcode"
+    t.string   "address"
+    t.integer  "phone"
+    t.integer  "time"
+    t.string   "ssid"
+    t.string   "limit"
+    t.string   "procedure"
+    t.string   "language"
+    t.string   "url"
+    t.float    "longitude"
+    t.float    "latitude"
+    t.integer  "placecode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

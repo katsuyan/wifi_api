@@ -10,26 +10,6 @@ class Spot < ApplicationRecord
     Math.sin(radians(lat2)))
   end
 
-  def self.move(lat, lng, distance, heading)
-    # 緯線上の移動距離
-    latitude_distance = distance * Math.cos(heading * Math::PI / 180)
-    # 1mあたりの緯度
-    earth_circle = 2 * Math::PI * EARTH_RADIUS
-    latitude_per_meter = 360 / earth_circle
-    # 緯度の変化量
-    latitude_delta = latitude_distance * latitude_per_meter
-    new_latitude = lat + latitude_delta
-    # 経線上の移動距離
-    longitude_distance = distance * Math.sin(heading * Math::PI / 180)
-    # 1mあたりの経度
-    earth_radius_at_longitude = EARTH_RADIUS * Math.cos(new_latitude * Math::PI / 180)
-    earth_circle_at_longitude = 2 * Math::PI * earth_radius_at_longitude
-    longitude_per_meter = 360 / earth_circle_at_longitude
-    # 経度の変化量
-    longitude_delta = longitude_distance * longitude_per_meter
-    {lat: new_latitude, lng: lng + longitude_delta}
-  end
-
   def self.getRange(lat, lng, distance)
     lat1 = move(lat, lng, distance, 0)[:lat]
     lat2 = move(lat, lng, distance, 180)[:lat]
@@ -41,5 +21,25 @@ class Spot < ApplicationRecord
   private
     def self.radians(deg)
       deg * Math::PI / 180
+    end
+
+    def self.move(lat, lng, distance, heading)
+      # 緯線上の移動距離
+      latitude_distance = distance * Math.cos(heading * Math::PI / 180)
+      # 1mあたりの緯度
+      earth_circle = 2 * Math::PI * EARTH_RADIUS
+      latitude_per_meter = 360 / earth_circle
+      # 緯度の変化量
+      latitude_delta = latitude_distance * latitude_per_meter
+      new_latitude = lat + latitude_delta
+      # 経線上の移動距離
+      longitude_distance = distance * Math.sin(heading * Math::PI / 180)
+      # 1mあたりの経度
+      earth_radius_at_longitude = EARTH_RADIUS * Math.cos(new_latitude * Math::PI / 180)
+      earth_circle_at_longitude = 2 * Math::PI * earth_radius_at_longitude
+      longitude_per_meter = 360 / earth_circle_at_longitude
+      # 経度の変化量
+      longitude_delta = longitude_distance * longitude_per_meter
+      {lat: new_latitude, lng: lng + longitude_delta}
     end
 end

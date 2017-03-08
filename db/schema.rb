@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20170307145459) do
     t.string   "procedure"
     t.string   "language"
     t.string   "url"
-    t.float    "longitude"
     t.float    "latitude"
+    t.float    "longitude"
     t.integer  "placecode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

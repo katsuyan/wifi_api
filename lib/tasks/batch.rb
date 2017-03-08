@@ -21,8 +21,8 @@ class Tasks::Batch
                    procedure:  row['利用手続き'],
                    language:   row['対応言語'],
                    url:        row['ウェブサイトのURL'],
-                   longitude:  row['緯度'],
-                   latitude:   row['経度'],
+                   latitude:   row['緯度'],
+                   longitude:  row['経度'],
                    placecode:  row['場所情報コード']})
     end
     puts "-------------------- end --------------------"

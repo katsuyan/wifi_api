@@ -7,7 +7,9 @@ class CreateSpots < ActiveRecord::Migration[5.0]
       t.string :category
       t.string :place
       t.string :postalcode
+      t.string :prefecture
       t.string :address
+      t.string :en_address
       t.integer :phone
       t.integer :time
       t.string :ssid

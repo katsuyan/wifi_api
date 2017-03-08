@@ -10,8 +10,8 @@ class CreateSpots < ActiveRecord::Migration[5.0]
       t.string :prefecture
       t.string :address
       t.string :en_address
-      t.integer :phone
-      t.integer :time
+      t.string :phone
+      t.string :time
       t.string :ssid
       t.string :limit
       t.string :procedure

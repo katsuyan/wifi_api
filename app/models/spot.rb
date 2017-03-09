@@ -20,9 +20,9 @@ class Spot < ApplicationRecord
       deg * Math::PI / 180
     end
 
-    def self.move(lat, lng, distance, heading)
+    def self.move(lat, lng, distance, direction)
       # 緯線上の移動距離
-      latitude_distance = distance * Math.cos(heading * Math::PI / 180)
+      latitude_distance = distance * Math.cos(direction * Math::PI / 180)
       # 1mあたりの緯度
       earth_circle = 2 * Math::PI * EARTH_RADIUS
       latitude_per_meter = 360 / earth_circle
@@ -30,7 +30,7 @@ class Spot < ApplicationRecord
       latitude_delta = latitude_distance * latitude_per_meter
       new_latitude = lat + latitude_delta
       # 経線上の移動距離
-      longitude_distance = distance * Math.sin(heading * Math::PI / 180)
+      longitude_distance = distance * Math.sin(direction * Math::PI / 180)
       # 1mあたりの経度
       earth_radius_at_longitude = EARTH_RADIUS * Math.cos(new_latitude * Math::PI / 180)
       earth_circle_at_longitude = 2 * Math::PI * earth_radius_at_longitude

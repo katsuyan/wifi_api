@@ -1,6 +1,10 @@
 class SpotsController < ApplicationController
   def spots
-    @spots = Spot.getInsideAll(35.771991, 140.3906614, 500)
-    render 'spots', formats: 'json', handlers: 'jbuilder'
+    if params[:lat].nil? or params[:lng].nil?
+      render :json => {"message": "lat and lng query are required"}, :status => 400
+    else
+      @spots = Spot.getInsideAll(params[:lat].to_f, params[:lng].to_f, 500)
+      render 'spots', formats: 'json', handlers: 'jbuilder'
+    end
   end
 end

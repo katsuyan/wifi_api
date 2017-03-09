@@ -7,8 +7,8 @@ FactoryGirl.define do
     place "MyString"
     postalcode "MyString"
     address "MyString"
-    phone 1
-    time 1
+    phone "MyString"
+    time "MyString"
     ssid "MyString"
     limit "MyString"
     procedure "MyString"

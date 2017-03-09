@@ -3,7 +3,7 @@ class SpotsController < ApplicationController
     if params[:lat].nil? or params[:lng].nil?
       render :json => {"message": "lat and lng query are required"}, :status => 400
     else
-      @spots = Spot.getInsideAll(params[:lat].to_f, params[:lng].to_f, 500)
+      @spots = Spot.getInsideAll(params[:lat].to_f, params[:lng].to_f)
       render 'spots', formats: 'json', handlers: 'jbuilder'
     end
   end

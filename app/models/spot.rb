@@ -2,7 +2,7 @@ class Spot < ApplicationRecord
 
   attr_accessor :distance
 
-  def self.getInsideAll(lat, lng, distance)
+  def self.getInsideAll(lat, lng, distance = 500, limit = 5)
     ranges = getRange(lat, lng, distance)
     inside_candidates = self.where('latitude < ?',  ranges[:max_lat]).
                             where('latitude > ?',  ranges[:min_lat]).
@@ -10,7 +10,7 @@ class Spot < ApplicationRecord
                             where('longitude > ?', ranges[:min_lng])
     inside_candidates.select{ |can| getDistance(lat, lng, can.latitude, can.longitude) < distance}
                      .each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
-                     .sort_by{ |can| can.distance}
+                     .sort_by{ |can| can.distance}[0..limit]
   end
 
   private

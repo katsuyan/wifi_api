@@ -1,3 +1,1 @@
-json.post do |json|
-  json.title @hello
-end
+json.spots @spots, :name

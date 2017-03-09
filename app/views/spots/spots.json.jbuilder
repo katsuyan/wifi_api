@@ -1,1 +1,1 @@
-json.spots @spots, :name
+json.spots @spots, :name, :address, :distance

@@ -1,4 +1,7 @@
 class Spot < ApplicationRecord
+
+  attr_accessor :distance
+
   EARTH_RADIUS = 6378150
 
   def self.getInside(lat, lng, distance)
@@ -8,6 +11,7 @@ class Spot < ApplicationRecord
                             where('longitude < ?', ranges[:max_lng]).
                             where('longitude > ?', ranges[:min_lng])
     inside_candidates.select{ |can| getDistance(lat, lng, can.latitude, can.longitude) < distance}
+                     .each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
   end
 
   def self.getDistance(lat1, lng1, lat2, lng2) # 単位:m

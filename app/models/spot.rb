@@ -10,7 +10,7 @@ class Spot < ApplicationRecord
                             where('longitude > ?', ranges[:min_lng])
     inside_candidates.select{ |can| getDistance(lat, lng, can.latitude, can.longitude) < distance}
                      .each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
-                     .sort_by{ |can| can.distance}[0..limit]
+                     .sort_by{ |can| can.distance}[0...limit]
   end
 
   private

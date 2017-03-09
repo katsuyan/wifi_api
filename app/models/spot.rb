@@ -2,9 +2,7 @@ class Spot < ApplicationRecord
 
   attr_accessor :distance
 
-  EARTH_RADIUS = 6378150
-
-  def self.getInside(lat, lng, distance)
+  def self.getInsideAll(lat, lng, distance)
     ranges = getRange(lat, lng, distance)
     inside_candidates = self.where('latitude < ?',  ranges[:max_lat]).
                             where('latitude > ?',  ranges[:min_lat]).
@@ -14,24 +12,9 @@ class Spot < ApplicationRecord
                      .each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
   end
 
-  def self.getDistance(lat1, lng1, lat2, lng2) # 単位:m
-    EARTH_RADIUS *
-    Math.acos(Math.cos(radians(lat1)) *
-    Math.cos(radians(lat2)) *
-    Math.cos(radians(lng2) - radians(lng2)) +
-    Math.sin(radians(lat1)) *
-    Math.sin(radians(lat2)))
-  end
-
-  def self.getRange(lat, lng, distance)
-    lat1 = move(lat, lng, distance, 0)[:lat]
-    lat2 = move(lat, lng, distance, 180)[:lat]
-    lng1 = move(lat, lng, distance, 90)[:lng]
-    lng2 = move(lat, lng, distance, 270)[:lng]
-    {max_lat: lat1, min_lat: lat2, max_lng: lng1, min_lng: lng2}
-  end
-
   private
+    EARTH_RADIUS = 6378150
+
     def self.radians(deg)
       deg * Math::PI / 180
     end
@@ -54,5 +37,22 @@ class Spot < ApplicationRecord
       # 経度の変化量
       longitude_delta = longitude_distance * longitude_per_meter
       {lat: new_latitude, lng: lng + longitude_delta}
+    end
+
+    def self.getDistance(lat1, lng1, lat2, lng2) # 単位:m
+      EARTH_RADIUS *
+      Math.acos(Math.cos(radians(lat1)) *
+      Math.cos(radians(lat2)) *
+      Math.cos(radians(lng2) - radians(lng2)) +
+      Math.sin(radians(lat1)) *
+      Math.sin(radians(lat2)))
+    end
+
+    def self.getRange(lat, lng, distance)
+      lat1 = move(lat, lng, distance, 0)[:lat]
+      lat2 = move(lat, lng, distance, 180)[:lat]
+      lng1 = move(lat, lng, distance, 90)[:lng]
+      lng2 = move(lat, lng, distance, 270)[:lng]
+      {max_lat: lat1, min_lat: lat2, max_lng: lng1, min_lng: lng2}
     end
 end

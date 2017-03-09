@@ -14,8 +14,8 @@ FactoryGirl.define do
     procedure "MyString"
     language "MyString"
     url "MyString"
-    longitude 1.5
-    latitude 1.5
+    sequence(:longitude) { |n| 35 + (10 ** -n)}
+    sequence(:latitude) { |n| 140 + (10 ** -n)}
     placecode 1
   end
 end

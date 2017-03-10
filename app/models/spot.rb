@@ -13,6 +13,13 @@ class Spot < ApplicationRecord
                      .sort_by{ |can| can.distance}[0...limit]
   end
 
+  def self.getFromStrAll(search, limit: 5)
+    self.where("name like :search or
+                address like :search or
+                en_name like :search or
+                en_address like :search", search: "%#{search}%").limit(limit)
+  end
+
   private
     EARTH_RADIUS = 6378150
 

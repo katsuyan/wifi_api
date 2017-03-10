@@ -16,21 +16,21 @@
               "name": "lat",
               "type": "integer",
               "description": "latitude",
-              "required": true
+              "required": false
             },
             {
               "paramType": "query",
               "name": "lng",
               "type": "integer",
               "description": "longitude",
-              "required": true
+              "required": false
             },
             {
               "paramType": "query",
               "name": "search",
               "type": "string",
               "description": "search",
-              "required": true
+              "required": false
             },
             {
               "paramType": "query",

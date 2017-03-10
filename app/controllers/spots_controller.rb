@@ -1,4 +1,15 @@
 class SpotsController < ApplicationController
+
+  swagger_controller :spots, "Spot"
+  swagger_api :api do
+    summary "Get a book"
+    consumes [ "application/json" ]
+    param :path, :id, :integer, :required, "Book Id"
+    response :ok, "Success", :Book
+    response :not_found
+    response :internal_server_error
+  end
+
   def home
     render 'home'
   end

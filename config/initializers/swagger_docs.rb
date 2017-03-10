@@ -8,7 +8,7 @@ end
 if Rails.env == 'development'
   @base_path = 'http://localhost:3000'
 else
-  @base_path = 'https://aqueous-earth-88993.herokuapp.com/'
+  @base_path = 'https://aqueous-earth-88993.herokuapp.com'
 end
 
 # 出力JSON設定

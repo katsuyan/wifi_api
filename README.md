@@ -1,4 +1,4 @@
-# FreeWifiAPI
+# FreeWiFiAPI
 
 これは、フリーwifiをの場所を特定するためのAPIを提供するアプリケーションです。
 
@@ -19,6 +19,12 @@ $ bundle install --without production
 
 ```
 $ rails db:migrate
+```
+
+次に、データを整えるためのbatchを実行します。
+
+```
+$ rails runner Tasks::Batch.execute
 ```
 
 最後に、テストを実行してうまく動いているかどうか確認してください。

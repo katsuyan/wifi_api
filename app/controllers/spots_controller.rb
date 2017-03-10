@@ -12,6 +12,7 @@ class SpotsController < ApplicationController
     param :query, :lng,      :integer, :required, "longitude"
     param :query, :distance, :integer, :optional, "distance"
     param :query, :limit,    :integer, :optional, "limit"
+    param :query, :lang,     :string,  :optional, "language"
     consumes [ "application/json" ]
     response :ok, "Success"
     response :bad_request, "BadRequest"
@@ -22,6 +23,7 @@ class SpotsController < ApplicationController
     limit = params[:limit] || 5
     latitude = params[:lat]
     longitude = params[:lng]
+    @language = params[:lang]
 
     if params[:lat].nil? or params[:lng].nil?
       render :json => {"message": "lat and lng query are required"}, :status => 400

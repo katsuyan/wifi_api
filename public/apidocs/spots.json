@@ -38,6 +38,13 @@
               "type": "integer",
               "description": "limit",
               "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "lang",
+              "type": "string",
+              "description": "language",
+              "required": false
             }
           ],
           "consumes": [

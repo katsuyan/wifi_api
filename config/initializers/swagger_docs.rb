@@ -20,8 +20,8 @@ Swagger::Docs::Config.register_apis({
         "title"       => "Free WiFi API",
         "description" => "FreeWiFi スポットを探すためのAPIです<br>
                           このアプリケーションは以下のサイト、コンテンツを利用して作られています。<br>
-                          ・出典: 行者移動支援サービスに関するデータサイト(https://www.hokoukukan.go.jp/free_wifi.html)<br>
-                          ・「無料公衆無線ＬＡＮスポット」(https://www.hokoukukan.go.jp/free_wifi.html)のデータを加工して利用",
+                          ・行者移動支援サービスに関するデータサイト( https://www.hokoukukan.go.jp/free_wifi.html )<br>
+                          ・無料公衆無線ＬＡＮスポット( https://www.hokoukukan.go.jp/free_wifi.html )のデータを加工して利用",
         "license"     => "Apache 2.0",
         "licenseUrl"  => "http://www.apache.org/licenses/LICENSE-2.0.html"
       }

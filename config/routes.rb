@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  get '/api', to: 'spots#spots'
+  root 'spots#home'
+  get '/api', to: 'spots#api'
 end

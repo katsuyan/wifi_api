@@ -9,7 +9,7 @@ class SpotsController < ApplicationController
            以下の値で試すことができます<br>
            lat: 35.771991, lng: 140.3906614"
     param :query, :lat,      :integer, :required, "latitude"
-    param :query, :lng,      :integer, :required, "language"
+    param :query, :lng,      :integer, :required, "longitude"
     param :query, :distance, :integer, :optional, "distance"
     param :query, :limit,    :integer, :optional, "limit"
     consumes [ "application/json" ]

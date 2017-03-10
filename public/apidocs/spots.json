@@ -22,7 +22,7 @@
               "paramType": "query",
               "name": "lng",
               "type": "integer",
-              "description": "language",
+              "description": "longitude",
               "required": true
             },
             {

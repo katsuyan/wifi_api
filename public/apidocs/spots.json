@@ -45,7 +45,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "Spots",
+              "responseModel": null,
               "message": "Success"
             },
             {
@@ -60,30 +60,5 @@
       ]
     }
   ],
-  "authorizations": null,
-  "models": {
-    "Spots": {
-      "id": "Spots",
-      "required": [
-        "name",
-        "address",
-        "distance"
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "name"
-        },
-        "address": {
-          "type": "string",
-          "description": "address"
-        },
-        "distance": {
-          "type": "float",
-          "description": "distance"
-        }
-      },
-      "description": "Spots object"
-    }
-  }
+  "authorizations": null
 }

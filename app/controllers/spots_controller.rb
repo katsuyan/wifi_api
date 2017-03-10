@@ -8,15 +8,8 @@ class SpotsController < ApplicationController
     param :query, :distance, :integer, :optional, "distance"
     param :query, :limit,    :integer, :optional, "limit"
     consumes [ "application/json" ]
-    response :ok, "Success", :Spots
+    response :ok, "Success"
     response :bad_request, "BadRequest"
-  end
-
-  swagger_model :Spots do
-    description "Spots object"
-    property :name, :string, :required, "name"
-    property :address, :string, :required, "address"
-    property :distance, :float, :required, "distance"
   end
 
   def api

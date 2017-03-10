@@ -1,4 +1,8 @@
 class SpotsController < ApplicationController
+  def home
+    render 'home'
+  end
+
   def api
     distance = params[:distance] || 500
     limit = params[:limit] || 5

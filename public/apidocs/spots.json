@@ -15,14 +15,14 @@
               "name": "lat",
               "type": "integer",
               "description": "latitude",
-              "required": false
+              "required": true
             },
             {
               "paramType": "query",
               "name": "lng",
               "type": "integer",
               "description": "language",
-              "required": false
+              "required": true
             },
             {
               "paramType": "query",
@@ -45,13 +45,13 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": null,
+              "responseModel": "Spots",
               "message": "Success"
             },
             {
               "code": 400,
               "responseModel": null,
-              "message": "Bad Request"
+              "message": "BadRequest"
             }
           ],
           "nickname": "Spots#api",
@@ -60,5 +60,30 @@
       ]
     }
   ],
-  "authorizations": null
+  "authorizations": null,
+  "models": {
+    "Spots": {
+      "id": "Spots",
+      "required": [
+        "name",
+        "address",
+        "distance"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "address": {
+          "type": "string",
+          "description": "address"
+        },
+        "distance": {
+          "type": "float",
+          "description": "distance"
+        }
+      },
+      "description": "Spots object"
+    }
+  }
 }

@@ -5,10 +5,9 @@ class Swagger::Docs::Config
   def self.transform_path(path, api_version); "apidocs/#{path}" end
 end
 
+@base_path = 'https://aqueous-earth-88993.herokuapp.com'
 if Rails.env == 'development'
   @base_path = 'http://localhost:3000'
-else
-  @base_path = 'https://aqueous-earth-88993.herokuapp.com'
 end
 
 # 出力JSON設定

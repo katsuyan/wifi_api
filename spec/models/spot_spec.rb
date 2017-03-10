@@ -2,9 +2,49 @@ require 'rails_helper'
 
 RSpec.describe Spot, type: :model do
   describe '.getInsideAll' do
-    it '500メートル以内(デフォルト)取得' do
-      8.times{ create(:spot) }
-      expect(Spot.getInsideAll(35.0, 140.0, limit: 100).count).to eq 6
+    let(:spot_num) { 10 }
+    let(:lat) { 35.0 }
+    let(:lng) {140.0 }
+    let(:spots) { spot_num.times{ create(:spot) }}
+    subject { Spot.getInsideAll(lat, lng, distance: distance, limit: limit).count }
+    describe '指定した距離の範囲内でspotを取得できること' do
+      context '1000km以内' do
+        let(:distance) { 100000 }
+        let(:limit) { spot_num }
+        it { is_expected.to eq 10 }
+      end
+
+      context '500m以内' do
+        let(:distance) { 500 }
+        let(:limit) { spot_num }
+        it { is_expected.to eq 8 }
+      end
+
+      context '10m以内' do
+        let(:distance) { 10 }
+        let(:limit) { spot_num }
+        it { is_expected.to eq 6 }
+      end
+    end
+
+    describe '指定したlimit以下の数のspotを取得できること' do
+      context 'limit:6でspotが5個取得できること' do
+        let(:distance) { 100000 }
+        let(:limit) { 6 }
+        it { is_expected.to eq 6 }
+      end
+    end
+
+    describe 'デフォルト値が動作すること' do
+      let(:distance) { 500 }
+      let(:limit) { spot_num }
+      it 'describe:500のデフォルト値が動作すること' do
+        expect(Spot.getInsideAll(lat, lng, limit: limit).count).to eq Spot.getInsideAll(lat, lng, distance: 500, limit: limit).count
+      end
+
+      it 'limit:5のデフォルト値が動作すること' do
+        expect(Spot.getInsideAll(lat, lng, limit: 5).count).to eq Spot.getInsideAll(lat, lng).count
+      end
     end
   end
 

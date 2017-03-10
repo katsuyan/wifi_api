@@ -37,7 +37,8 @@ class SpotsController < ApplicationController
       @spots = Spot.getFromStrAll(search, limit: limit)
       render 'api', formats: 'json', handlers: 'jbuilder'
     else
-
+      @spots = Spot.getInsideAndFromStrAll(latitude.to_f, longitude.to_f, search, distance: 500, limit: 5)
+      render 'api', formats: 'json', handlers: 'jbuilder'
     end
   end
 end

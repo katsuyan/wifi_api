@@ -3,11 +3,7 @@ class Spot < ApplicationRecord
   attr_accessor :distance
 
   def self.getInsideAll(lat, lng, distance: 500, limit: 5)
-    ranges = getRange(lat, lng, distance)
-    inside_candidates = self.where('latitude < ?',  ranges[:max_lat]).
-                            where('latitude > ?',  ranges[:min_lat]).
-                            where('longitude < ?', ranges[:max_lng]).
-                            where('longitude > ?', ranges[:min_lng])
+    inside_candidates = getInsideSquare(lat, lng, distance)
     inside_candidates.each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
                      .select{ |can| can.distance < distance}
                      .sort_by{ |can| can.distance}[0...limit]
@@ -20,11 +16,26 @@ class Spot < ApplicationRecord
                 en_address like :search", search: "%#{search}%").limit(limit)
   end
 
+  def self.getInsideAndFromStrAll(lat, lng, search, distance: 500, limit: 5)
+    candidates = getFromStrAll(search, limit: Spot.count)
+    candidates.each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
+                     .select{ |can| can.distance < distance}
+                     .sort_by{ |can| can.distance}[0...limit]
+  end
+
   private
     EARTH_RADIUS = 6378150
 
     def self.radians(deg)
       deg * Math::PI / 180
+    end
+
+    def self.getInsideSquare(lat, lng, distance)
+      ranges = getRange(lat, lng, distance)
+      self.where('latitude < ?',  ranges[:max_lat]).
+                              where('latitude > ?',  ranges[:min_lat]).
+                              where('longitude < ?', ranges[:max_lng]).
+                              where('longitude > ?', ranges[:min_lng])
     end
 
     def self.move(lat, lng, distance, direction)

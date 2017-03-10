@@ -8,9 +8,10 @@ class SpotsController < ApplicationController
            デフォルト値<br>
            distance: 500, limit: 5<br><br>
            以下の値で試すことができます<br>
-           lat: 35.771991, lng: 140.3906614'
+           lat: 35.771991, lng: 140.3906614 または search: 渋谷'
     param :query, :lat,      :integer, :required, "latitude"
     param :query, :lng,      :integer, :required, "longitude"
+    param :query, :search,   :string,  :required, "search"
     param :query, :distance, :integer, :optional, "distance"
     param :query, :limit,    :integer, :optional, "limit"
     param :query, :lang,     :string,  :optional, "language"
@@ -25,12 +26,17 @@ class SpotsController < ApplicationController
     latitude = params[:lat]
     longitude = params[:lng]
     @language = params[:lang]
+    search = params[:search]
 
-    if params[:lat].nil? or params[:lng].nil?
+    if (latitude.nil? or longitude.nil?) and search.nil?
       render :json => {"message": "lat and lng query are required"}, :status => 400
-    else
+    elsif search.nil?
       @spots = Spot.getInsideAll(latitude.to_f, longitude.to_f, distance: distance.to_f, limit: limit.to_i)
       render 'api', formats: 'json', handlers: 'jbuilder'
+    elsif (latitude.nil? or longitude.nil?)
+
+    else
+
     end
   end
 end

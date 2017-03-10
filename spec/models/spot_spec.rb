@@ -106,6 +106,7 @@ RSpec.describe Spot, type: :model do
     end
   end
 
+
   describe '.getDistance' do
     let(:lat1) { 35.0 }
     let(:lng1) { 140.0 }
@@ -136,6 +137,7 @@ RSpec.describe Spot, type: :model do
       end
     end
   end
+
 
   describe '.getRange' do
     let(:lat) { 35 }

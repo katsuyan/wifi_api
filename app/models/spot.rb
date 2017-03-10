@@ -44,7 +44,7 @@ class Spot < ApplicationRecord
       EARTH_RADIUS *
       Math.acos(Math.cos(radians(lat1)) *
       Math.cos(radians(lat2)) *
-      Math.cos(radians(lng2) - radians(lng2)) +
+      Math.cos(radians(lng2) - radians(lng1)) +
       Math.sin(radians(lat1)) *
       Math.sin(radians(lat2)))
     end

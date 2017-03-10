@@ -67,7 +67,34 @@ RSpec.describe Spot, type: :model do
   end
 
   describe '.getDistance' do
+    let(:lat1) { 35.0 }
+    let(:lng1) { 140.0 }
+    subject { Spot.__send__(:getDistance, lat1, lng1, lat2, lng2).to_i }
+    context '距離が0くらいになること' do
+      let(:lat2) { 35.0 }
+      let(:lng2) { 140.0 }
+      it { is_expected.to eq 0 }
+    end
 
+    describe '距離が500くらいになること' do
+      context 'latだけ動かして' do
+        let(:lat2) { 35.0045 }
+        let(:lng2) { 140.0 }
+        it { is_expected.to eq 500 }
+      end
+
+      context 'lngだけ動かして' do
+        let(:lat2) { 35.0 }
+        let(:lng2) { 140.00549 }
+        it { is_expected.to eq 500 }
+      end
+
+      context 'lat,lngを動かして' do
+        let(:lat2) { 35.00351 }
+        let(:lng2) { 140.00343 }
+        it { is_expected.to eq 500 }
+      end
+    end
   end
 
   describe '.getRange' do

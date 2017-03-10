@@ -8,28 +8,50 @@
       "path": "/api",
       "operations": [
         {
-          "summary": "Get a book",
+          "summary": "Get spots",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "lat",
+              "type": "integer",
+              "description": "latitude",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "lng",
+              "type": "integer",
+              "description": "language",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "distance",
+              "type": "integer",
+              "description": "distance",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "limit",
+              "type": "integer",
+              "description": "limit",
+              "required": false
+            }
+          ],
           "consumes": [
             "application/json"
-          ],
-          "parameters": [
-
           ],
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": "Book",
+              "responseModel": null,
               "message": "Success"
             },
             {
-              "code": 404,
+              "code": 400,
               "responseModel": null,
-              "message": "Not Found"
-            },
-            {
-              "code": 500,
-              "responseModel": null,
-              "message": "Internal Server Error"
+              "message": "Bad Request"
             }
           ],
           "nickname": "Spots#api",

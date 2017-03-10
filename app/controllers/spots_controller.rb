@@ -2,12 +2,14 @@ class SpotsController < ApplicationController
 
   swagger_controller :spots, "Spot"
   swagger_api :api do
-    summary "Get a book"
+    summary "Get spots"
+    param :query, :lat,      :integer, :optional, "latitude"
+    param :query, :lng,      :integer, :optional, "language"
+    param :query, :distance, :integer, :optional, "distance"
+    param :query, :limit,    :integer, :optional, "limit"
     consumes [ "application/json" ]
-    param :path, :id, :integer, :required, "Book Id"
-    response :ok, "Success", :Book
-    response :not_found
-    response :internal_server_error
+    response :ok, "Success"
+    response :bad_request
   end
 
   def api

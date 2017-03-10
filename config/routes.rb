@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root 'spots#spots'
+  get '/api', to: 'spots#spots'
 end

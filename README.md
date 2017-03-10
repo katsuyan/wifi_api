@@ -24,7 +24,7 @@ $ rails db:migrate
 次に、データを整えるためのbatchを実行します。
 
 ```
-$ rails runner Tasks::Batch.makespot
+$ rails runner Tasks::Batch.makespots
 ```
 
 最後に、テストを実行してうまく動いているかどうか確認してください。
@@ -38,6 +38,19 @@ $ rspec
 ```
 $ rails server
 ```
+
+## apidocsの生成について
+まず、以下のコマンドでapidocsを生成します。
+
+ ```
+ rake swagger:docs
+ ```
+
+ その後、以下のコマンドでapidocs以下のファイルの修正をします。
+
+ ```
+ rails runner Tasks::Batch.fixapi
+ ```
 
 ## ライセンス等
 このアプリケーションは以下のサイト、コンテンツを利用して作られています。

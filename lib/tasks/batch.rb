@@ -1,7 +1,7 @@
 require 'csv'
 
 class Tasks::Batch
-  def self.makespot
+  def self.makespots
     puts "-------------------- start --------------------"
     Spot.delete_all
     CSV.foreach('jta_free_wifi.csv', :headers => true) do |row|
@@ -29,5 +29,17 @@ class Tasks::Batch
   end
 
   def self.fixapi
+    Dir.glob('public/apidocs/*').each do |f_name|
+      open(f_name,"r+") do |f|
+        f.flock(File::LOCK_EX)
+        body = f.read
+        body = body.gsub('"basePath": ""') do |tmp|
+          '"basePath": "/"'
+        end
+        f.rewind
+        f.puts body
+        f.truncate(f.tell)
+      end
+    end
   end
 end

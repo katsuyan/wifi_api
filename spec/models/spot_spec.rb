@@ -4,7 +4,7 @@ RSpec.describe Spot, type: :model do
   describe '.getInsideAll' do
     it '500メートル以内(デフォルト)取得' do
       8.times{ create(:spot) }
-      expect(Spot.getInsideAll(35.0, 140.0, 500, 100).count).to eq 6
+      expect(Spot.getInsideAll(35.0, 140.0, limit: 100).count).to eq 6
     end
   end
 

@@ -1,8 +1,6 @@
 # WifiAPI
 
-これは、フリーwifiをの場所を
-[*Ruby on Rails チュートリアル: 実例を使って Rails を学ぼう*](http://railstutorial.jp/)
-[Michael Hartl](http://www.michaelhartl.com/) 著
+これは、フリーwifiをの場所を特定するためのAPIを提供するためのアプリケーションです。
 
 ## APIの使い方
 このアプリケーションのAPIの利用の仕方は以下のURLを参考にしてください。

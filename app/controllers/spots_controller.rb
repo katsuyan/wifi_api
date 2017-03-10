@@ -3,6 +3,9 @@ class SpotsController < ApplicationController
   swagger_controller :Spots, "Spot"
   swagger_api :api do
     summary "Get spots"
+    notes "latとlng または search は必須パラメータです(どちらか片方)<br><br>
+           デフォルト値<br>
+           distance: 500, limit: 5"
     param :query, :lat,      :integer, :required, "latitude"
     param :query, :lng,      :integer, :required, "language"
     param :query, :distance, :integer, :optional, "distance"

@@ -24,7 +24,7 @@ $ rails db:migrate
 次に、データを整えるためのbatchを実行します。
 
 ```
-$ rails runner Tasks::Batch.execute
+$ rails runner Tasks::Batch.makespot
 ```
 
 最後に、テストを実行してうまく動いているかどうか確認してください。

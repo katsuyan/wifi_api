@@ -1,7 +1,7 @@
 require 'csv'
 
 class Tasks::Batch
-  def self.execute
+  def self.makespot
     puts "-------------------- start --------------------"
     Spot.delete_all
     CSV.foreach('jta_free_wifi.csv', :headers => true) do |row|
@@ -26,5 +26,8 @@ class Tasks::Batch
                    placecode:  row['場所情報コード']})
     end
     puts "-------------------- end --------------------"
+  end
+
+  def self.fixapi
   end
 end

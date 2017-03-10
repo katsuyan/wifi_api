@@ -29,7 +29,7 @@ Swagger::Docs::Config.register_apis({
   }
 })
 
-GrapeSwaggerRails.options.app_name    = "Free FiFi API"
+GrapeSwaggerRails.options.app_name    = "Free WiFi API"
 # 基盤となるJSON
 GrapeSwaggerRails.options.url         = "/apidocs/api-docs.json"
 # こっちの`/`は置換されないのでこれでOK

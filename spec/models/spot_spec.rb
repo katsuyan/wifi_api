@@ -46,6 +46,10 @@ RSpec.describe Spot, type: :model do
         expect(Spot.getInsideAll(lat, lng, limit: 5).count).to eq Spot.getInsideAll(lat, lng).count
       end
     end
+
+    it '値取得後それぞれのオブジェクトのdistanceがnilでないこと' do
+      expect(Spot.getInsideAll(lat, lng).first.distance).not_to be_nil
+    end
   end
 
 

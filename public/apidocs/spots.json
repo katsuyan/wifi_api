@@ -1,0 +1,42 @@
+{
+  "apiVersion": "v1",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "spots",
+  "apis": [
+    {
+      "path": "/api",
+      "operations": [
+        {
+          "summary": "Get a book",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Book",
+              "message": "Success"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 500,
+              "responseModel": null,
+              "message": "Internal Server Error"
+            }
+          ],
+          "nickname": "Spots#api",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,18 @@
+{
+  "apiVersion": "v1",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "apis": [
+    {
+      "path": "/apidocs/spots.{format}",
+      "description": "Spot"
+    }
+  ],
+  "authorizations": null,
+  "info": {
+    "title": "Free WiFi API",
+    "description": "Books operation API",
+    "license": "Apache 2.0",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.html"
+  }
+}

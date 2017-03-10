@@ -5,7 +5,9 @@ class SpotsController < ApplicationController
     summary "Get spots"
     notes "latとlng または search は必須パラメータです(どちらか片方)<br><br>
            デフォルト値<br>
-           distance: 500, limit: 5"
+           distance: 500, limit: 5<br><br>
+           以下の値で試すことができます<br>
+           lat: 35.771991, lng: 140.3906614"
     param :query, :lat,      :integer, :required, "latitude"
     param :query, :lng,      :integer, :required, "language"
     param :query, :distance, :integer, :optional, "distance"

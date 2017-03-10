@@ -9,7 +9,7 @@
       "operations": [
         {
           "summary": "Get spots",
-          "notes": "latとlng または search は必須パラメータです(どちらか片方)<br><br>\n           デフォルト値<br>\n           distance: 500, limit: 5",
+          "notes": "latとlng または search は必須パラメータです(どちらか片方)<br><br>\n           デフォルト値<br>\n           distance: 500, limit: 5<br><br>\n           以下の値で試すことができます<br>\n           lat: 35.771991, lng: 140.3906614",
           "parameters": [
             {
               "paramType": "query",

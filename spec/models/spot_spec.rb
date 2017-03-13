@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Spot, type: :model do
+  let(:spot_num) { Spot.count }
   describe '.getInsideAll' do
-    let(:spot_num) { 10 }
     let(:lat) { 35.0 }
     let(:lng) {140.0 }
     subject { Spot.getInsideAll(lat, lng, distance: distance, limit: limit).count }
@@ -27,7 +27,7 @@ RSpec.describe Spot, type: :model do
     end
 
     describe '指定したlimit以下の数のspotを取得できること' do
-      context 'limit:6でspotが5個取得できること' do
+      context 'limit:6でspotが6個取得できること' do
         let(:distance) { 100000 }
         let(:limit) { 6 }
         it { is_expected.to eq 6 }
@@ -53,7 +53,26 @@ RSpec.describe Spot, type: :model do
 
 
   describe '.getFromStrAll' do
+    subject { Spot.getFromStrAll(search, limit: spot_num).count }
+    context 'nameで検索できること' do
+      let(:search) { "名前_2" }
+      it { is_expected.to eq 1 }
+    end
 
+    context 'en_nameで検索できること' do
+      let(:search) { "name_2" }
+      it { is_expected.to eq 1 }
+    end
+
+    context 'addressで検索できること' do
+      let(:search) { "住所_2" }
+      it { is_expected.to eq 1 }
+    end
+
+    context 'en_addressで検索できること' do
+      let(:search) { "address_2" }
+      it { is_expected.to eq 1 }
+    end
   end
 
 

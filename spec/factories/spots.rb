@@ -1,12 +1,13 @@
 FactoryGirl.define do
   factory :spot do
-    name "MyString"
-    en_name "MyString"
+    sequence(:name) { |n| "名前_#{n}"}
+    sequence(:en_name) { |n| "name_#{n}"}
     status "MyString"
     category "MyString"
     place "MyString"
     postalcode "MyString"
-    address "MyString"
+    sequence(:address) { |n| "住所_#{n}"}
+    sequence(:en_address) { |n| "address_#{n}"}
     phone "MyString"
     time "MyString"
     ssid "MyString"

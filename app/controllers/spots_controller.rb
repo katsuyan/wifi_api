@@ -21,8 +21,8 @@ class SpotsController < ApplicationController
   end
 
   def api
-    distance = params[:distance] || 500
-    limit = params[:limit] || 5
+    distance = (params[:distance] || 500).to_f
+    limit = (params[:limit] || 5).to_f
     latitude = params[:lat]
     longitude = params[:lng]
     @language = params[:lang]
@@ -34,11 +34,11 @@ class SpotsController < ApplicationController
     end
 
     if search.nil?
-      @spots = Spot.getInsideAll(latitude.to_f, longitude.to_f, distance: distance.to_f, limit: limit.to_i)
+      @spots = Spot.getInsideAll(latitude.to_f, longitude.to_f, distance: distance, limit: limit)
     elsif (latitude.nil? or longitude.nil?)
       @spots = Spot.getFromStrAll(search, limit: limit)
     else
-      @spots = Spot.getInsideAndFromStrAll(latitude.to_f, longitude.to_f, search, distance: distance.to_f, limit: limit.to_i)
+      @spots = Spot.getInsideAndFromStrAll(latitude.to_f, longitude.to_f, search, distance: distance, limit: limit)
     end
 
     render 'api', formats: 'json', handlers: 'jbuilder'

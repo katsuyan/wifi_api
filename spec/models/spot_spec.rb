@@ -5,8 +5,8 @@ RSpec.describe Spot, type: :model do
   let(:lat) { 35.0 }
   let(:lng) {140.0 }
 
-  describe '.getInsideAll' do
-    subject { Spot.getInsideAll(lat, lng, distance: distance, limit: limit).count }
+  describe '.searchInside' do
+    subject { Spot.searchInside(lat, lng, distance: distance, limit: limit).count }
     describe '指定した距離の範囲内でspotを取得できること' do
       context '1000km以内' do
         let(:distance) { 100000 }
@@ -39,22 +39,22 @@ RSpec.describe Spot, type: :model do
       let(:distance) { 500 }
       let(:limit) { spot_num }
       it 'describe:500のデフォルト値が動作すること' do
-        expect(Spot.getInsideAll(lat, lng, limit: limit).count).to eq Spot.getInsideAll(lat, lng, distance: 500, limit: limit).count
+        expect(Spot.searchInside(lat, lng, limit: limit).count).to eq Spot.searchInside(lat, lng, distance: 500, limit: limit).count
       end
 
       it 'limit:5のデフォルト値が動作すること' do
-        expect(Spot.getInsideAll(lat, lng, limit: 5).count).to eq Spot.getInsideAll(lat, lng).count
+        expect(Spot.searchInside(lat, lng, limit: 5).count).to eq Spot.searchInside(lat, lng).count
       end
     end
 
     it '値取得後それぞれのオブジェクトのdistanceがnilでないこと' do
-      expect(Spot.getInsideAll(lat, lng).first.distance).not_to be_nil
+      expect(Spot.searchInside(lat, lng).first.distance).not_to be_nil
     end
   end
 
 
-  describe '.getFromStrAll' do
-    subject { Spot.getFromStrAll(search, limit: spot_num).count }
+  describe '.searchByWord' do
+    subject { Spot.searchByWord(search, limit: spot_num).count }
     context 'nameで検索できること' do
       let(:search) { "名前_0" }
       it { is_expected.to eq 1 }
@@ -77,17 +77,17 @@ RSpec.describe Spot, type: :model do
   end
 
 
-  describe ".getInsideAndFromStrAll" do
+  describe ".searchByWordInside" do
     it '距離と文字列で絞込ができること' do
-      expect(Spot.getInsideAndFromStrAll(lat, lng, '名前_1', distance: 500, limit: spot_num).count).to eq (spot_num - 10)
+      expect(Spot.searchByWordInside(lat, lng, '名前_1', distance: 500, limit: spot_num).count).to eq (spot_num - 10)
     end
 
     it 'distanceのデフォルトが500であること' do
-      expect(Spot.getInsideAndFromStrAll(lat, lng, '名前_1', limit: spot_num).count).to eq Spot.getInsideAndFromStrAll(lat, lng, '名前_1', distance: 500, limit: spot_num).count
+      expect(Spot.searchByWordInside(lat, lng, '名前_1', limit: spot_num).count).to eq Spot.searchByWordInside(lat, lng, '名前_1', distance: 500, limit: spot_num).count
     end
 
     it 'limitのデフォルトが5であること' do
-      expect(Spot.getInsideAndFromStrAll(lat, lng, '名前_1', distance: 10000).count).to eq 5
+      expect(Spot.searchByWordInside(lat, lng, '名前_1', distance: 10000).count).to eq 5
     end
   end
 

@@ -2,22 +2,22 @@ class Spot < ApplicationRecord
 
   attr_accessor :distance
 
-  def self.getInsideAll(lat, lng, distance: 500, limit: 5)
+  def self.searchInside(lat, lng, distance: 500, limit: 5)
     inside_candidates = getInsideSquare(lat, lng, distance)
     inside_candidates.each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
                      .select{ |can| can.distance < distance}
                      .sort_by{ |can| can.distance}[0...limit]
   end
 
-  def self.getFromStrAll(word, limit: 5)
+  def self.searchByWord(word, limit: 5)
     self.where("name like :word or
                 address like :word or
                 en_name like :word or
                 en_address like :word", word: "%#{word}%").limit(limit)
   end
 
-  def self.getInsideAndFromStrAll(lat, lng, word, distance: 500, limit: 5)
-    candidates = getFromStrAll(word, limit: Spot.count)
+  def self.searchByWordInside(lat, lng, word, distance: 500, limit: 5)
+    candidates = searchByWord(word, limit: Spot.count)
     candidates.each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
                      .select{ |can| can.distance < distance}
                      .sort_by{ |can| can.distance}[0...limit]

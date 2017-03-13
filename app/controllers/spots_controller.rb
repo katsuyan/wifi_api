@@ -34,11 +34,11 @@ class SpotsController < ApplicationController
     end
 
     if word.nil?
-      @spots = Spot.getInsideAll(latitude.to_f, longitude.to_f, distance: distance, limit: limit)
+      @spots = Spot.searchInside(latitude.to_f, longitude.to_f, distance: distance, limit: limit)
     elsif (latitude.nil? or longitude.nil?)
-      @spots = Spot.getFromStrAll(word, limit: limit)
+      @spots = Spot.searchByWord(word, limit: limit)
     else
-      @spots = Spot.getInsideAndFromStrAll(latitude.to_f, longitude.to_f, word, distance: distance, limit: limit)
+      @spots = Spot.searchByWordInside(latitude.to_f, longitude.to_f, word, distance: distance, limit: limit)
     end
 
     render 'api', formats: 'json', handlers: 'jbuilder'

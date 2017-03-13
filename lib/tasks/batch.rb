@@ -30,6 +30,7 @@ class Tasks::Batch
   end
 
   def self.fixapi
+    puts "-------------------- start --------------------"
     Dir.glob('public/apidocs/*').each do |f_name|
       open(f_name,"r+") do |f|
         f.flock(File::LOCK_EX)
@@ -42,5 +43,6 @@ class Tasks::Batch
         f.truncate(f.tell)
       end
     end
+    puts "-------------------- end --------------------"
   end
 end

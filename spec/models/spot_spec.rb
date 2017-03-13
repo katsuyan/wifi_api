@@ -89,7 +89,28 @@ RSpec.describe Spot, type: :model do
 
 
   describe '.getInsideSquare' do
+    let(:lat) { 35.0 }
+    let(:lng) {140.0 }
+    subject { Spot.getInsideSquare(lat, lng, distance).count }
+    describe '指定した距離の正方形の範囲内でspotを取得できること' do
+      context '1000km以内' do
+        let(:distance) { 100000 }
+        let(:limit) { spot_num }
+        it { is_expected.to eq spot_num }
+      end
 
+      context '500m以内' do
+        let(:distance) { 500 }
+        let(:limit) { spot_num }
+        it { is_expected.to eq (spot_num - 2) }
+      end
+
+      context '10m以内' do
+        let(:distance) { 10 }
+        let(:limit) { spot_num }
+        it { is_expected.to eq (spot_num - 4) }
+      end
+    end
   end
 
 

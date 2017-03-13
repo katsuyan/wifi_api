@@ -53,10 +53,25 @@ RSpec.describe Spot, type: :model do
   end
 
 
+  describe '.getFromStrAll' do
+
+  end
+
+
+  describe ".getInsideAndFromStrAll" do
+
+  end
+
+
   describe '.radians' do
     it 'ラジアンの180がMath::PIであること' do
       expect(Spot.__send__(:radians, 180)).to eq Math::PI
     end
+  end
+
+
+  describe '.getInsideSquare' do
+    
   end
 
 

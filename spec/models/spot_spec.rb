@@ -10,19 +10,19 @@ RSpec.describe Spot, type: :model do
       context '1000km以内' do
         let(:distance) { 100000 }
         let(:limit) { spot_num }
-        it { is_expected.to eq 10 }
+        it { is_expected.to eq spot_num }
       end
 
       context '500m以内' do
         let(:distance) { 500 }
         let(:limit) { spot_num }
-        it { is_expected.to eq 8 }
+        it { is_expected.to eq (spot_num - 2) }
       end
 
       context '10m以内' do
         let(:distance) { 10 }
         let(:limit) { spot_num }
-        it { is_expected.to eq 6 }
+        it { is_expected.to eq (spot_num - 4) }
       end
     end
 
@@ -55,22 +55,22 @@ RSpec.describe Spot, type: :model do
   describe '.getFromStrAll' do
     subject { Spot.getFromStrAll(search, limit: spot_num).count }
     context 'nameで検索できること' do
-      let(:search) { "名前_2" }
+      let(:search) { "名前_0" }
       it { is_expected.to eq 1 }
     end
 
     context 'en_nameで検索できること' do
-      let(:search) { "name_2" }
+      let(:search) { "name_0" }
       it { is_expected.to eq 1 }
     end
 
     context 'addressで検索できること' do
-      let(:search) { "住所_2" }
+      let(:search) { "住所_0" }
       it { is_expected.to eq 1 }
     end
 
     context 'en_addressで検索できること' do
-      let(:search) { "address_2" }
+      let(:search) { "address_0" }
       it { is_expected.to eq 1 }
     end
   end

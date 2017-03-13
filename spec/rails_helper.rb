@@ -58,7 +58,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.before(:suite) do
-      10.times{ FactoryGirl.create(:spot) }
+      20.times{ FactoryGirl.create(:spot) }
     end
 
     config.after(:suite) do

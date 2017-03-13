@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe SpotsController, type: :controller do
   describe 'GET #api' do
-    let(:spots) { 10.times{ create(:spot) }}
     let(:lat) { 35.0 }
     let(:lng) {140.0 }
     before { get :api, params: {lat: lat, lng: lng}}

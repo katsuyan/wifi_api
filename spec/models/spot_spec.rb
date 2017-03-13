@@ -5,7 +5,6 @@ RSpec.describe Spot, type: :model do
     let(:spot_num) { 10 }
     let(:lat) { 35.0 }
     let(:lng) {140.0 }
-    let(:spots) { spot_num.times{ create(:spot) }}
     subject { Spot.getInsideAll(lat, lng, distance: distance, limit: limit).count }
     describe '指定した距離の範囲内でspotを取得できること' do
       context '1000km以内' do
@@ -71,7 +70,7 @@ RSpec.describe Spot, type: :model do
 
 
   describe '.getInsideSquare' do
-    
+
   end
 
 

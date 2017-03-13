@@ -78,7 +78,17 @@ RSpec.describe Spot, type: :model do
 
 
   describe ".getInsideAndFromStrAll" do
+    it '距離と文字列で絞込ができること' do
+      expect(Spot.getInsideAndFromStrAll(lat, lng, '名前_1', distance: 500, limit: spot_num).count).to eq (spot_num - 10)
+    end
 
+    it 'distanceのデフォルトが500であること' do
+      expect(Spot.getInsideAndFromStrAll(lat, lng, '名前_1', limit: spot_num).count).to eq Spot.getInsideAndFromStrAll(lat, lng, '名前_1', distance: 500, limit: spot_num).count
+    end
+
+    it 'limitのデフォルトが5であること' do
+      expect(Spot.getInsideAndFromStrAll(lat, lng, '名前_1', distance: 10000).count).to eq 5
+    end
   end
 
 

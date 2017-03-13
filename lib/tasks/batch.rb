@@ -4,8 +4,8 @@ class Tasks::Batch
   def self.makespotsHeroku
     puts "-------------------- start --------------------"
     Spot.delete_all
-    CSV.foreach('jta_free_wifi.csv', :headers => true) do |row, i|
-      break if i == 10000
+    CSV.foreach('jta_free_wifi.csv', :headers => true) do |row|
+      break if $. - 1 == 10000
       Spot.create({name:       row['スポット名（日本語）'],
                    en_name:    row['スポット名（英語）'],
                    status:     row['スポットステータス'],

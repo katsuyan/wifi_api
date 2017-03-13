@@ -11,7 +11,7 @@ class SpotsController < ApplicationController
            lat: 35.771991, lng: 140.3906614 または word: 渋谷'
     param :query, :lat,      :integer, :optional, "latitude"
     param :query, :lng,      :integer, :optional, "longitude"
-    param :query, :word,   :string,  :optional, "word"
+    param :query, :word,     :string,  :optional, "word"
     param :query, :distance, :integer, :optional, "distance"
     param :query, :limit,    :integer, :optional, "limit"
     param :query, :lang,     :string,  :optional, "language"

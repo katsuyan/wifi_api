@@ -11,20 +11,30 @@ RSpec.describe SpotsController, type: :controller do
           get :api, params: {lat: lat, lng: lng}
           expect(response.status).to eq 200
         end
+
+        it 'searchパラメータが存在する' do
+          get :api, params: {word: 'name'}
+          expect(response.status).to eq 200
+        end
+
+        it 'lat,lng,searchパラメータが存在する' do
+          get :api, params: {lat: lat, lng: lng, word: 'name'}
+          expect(response.status).to eq 200
+        end
       end
 
       describe 'ステータスコードとして400が返ること' do
-        it 'lat,lngパラメータが存在しない' do
+        it 'lat,lng,wordパラメータが存在しない' do
           get :api
           expect(response.status).to eq 400
         end
 
-        it 'latパラメータが存在しない' do
+        it 'lat,wordパラメータが存在しない' do
           get :api, params: {lng: lng}
           expect(response.status).to eq 400
         end
 
-        it 'lngパラメータが存在しない' do
+        it 'lng,wordパラメータが存在しない' do
           get :api, params: {lat: lat}
           expect(response.status).to eq 400
         end

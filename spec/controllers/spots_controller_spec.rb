@@ -52,7 +52,31 @@ RSpec.describe SpotsController, type: :controller do
     end
 
     describe 'テンプレートが反映されていること' do
+      render_views
 
+      it 'lat,lngパラメータが存在する' do
+        get :api, params: {lat: lat, lng: lng}
+        json = JSON.parse(response.body)
+        expect(json['spots'][0]).to be_has_key('name')
+        expect(json['spots'][0]).to be_has_key('address')
+        expect(json['spots'][0]).to be_has_key('distance')
+      end
+
+      it 'wordパラメータが存在する' do
+        get :api, params: {word: 'name'}
+        json = JSON.parse(response.body)
+        expect(json['spots'][0]).to be_has_key('name')
+        expect(json['spots'][0]).to be_has_key('address')
+        expect(json['spots'][0]).to be_has_key('distance')
+      end
+
+      it 'lat,lng,wordパラメータが存在する' do
+        get :api, params: {lat: lat, lng: lng, word: 'name'}
+        json = JSON.parse(response.body)
+        expect(json['spots'][0]).to be_has_key('name')
+        expect(json['spots'][0]).to be_has_key('address')
+        expect(json['spots'][0]).to be_has_key('distance')
+      end
     end
   end
 end

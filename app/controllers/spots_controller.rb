@@ -30,15 +30,17 @@ class SpotsController < ApplicationController
 
     if (latitude.nil? or longitude.nil?) and search.nil?
       render :json => {"message": "lat and lng query are required"}, :status => 400
-    elsif search.nil?
+      return
+    end
+
+    if search.nil?
       @spots = Spot.getInsideAll(latitude.to_f, longitude.to_f, distance: distance.to_f, limit: limit.to_i)
-      render 'api', formats: 'json', handlers: 'jbuilder'
     elsif (latitude.nil? or longitude.nil?)
       @spots = Spot.getFromStrAll(search, limit: limit)
-      render 'api', formats: 'json', handlers: 'jbuilder'
     else
-      @spots = Spot.getInsideAndFromStrAll(latitude.to_f, longitude.to_f, search, distance: 500, limit: 5)
-      render 'api', formats: 'json', handlers: 'jbuilder'
+      @spots = Spot.getInsideAndFromStrAll(latitude.to_f, longitude.to_f, search, distance: distance.to_f, limit: limit.to_i)
     end
+
+    render 'api', formats: 'json', handlers: 'jbuilder'
   end
 end

@@ -9,15 +9,15 @@ class Spot < ApplicationRecord
                      .sort_by{ |can| can.distance}[0...limit]
   end
 
-  def self.getFromStrAll(search, limit: 5)
-    self.where("name like :search or
-                address like :search or
-                en_name like :search or
-                en_address like :search", search: "%#{search}%").limit(limit)
+  def self.getFromStrAll(word, limit: 5)
+    self.where("name like :word or
+                address like :word or
+                en_name like :word or
+                en_address like :word", word: "%#{word}%").limit(limit)
   end
 
-  def self.getInsideAndFromStrAll(lat, lng, search, distance: 500, limit: 5)
-    candidates = getFromStrAll(search, limit: Spot.count)
+  def self.getInsideAndFromStrAll(lat, lng, word, distance: 500, limit: 5)
+    candidates = getFromStrAll(word, limit: Spot.count)
     candidates.each{ |can| can.distance = getDistance(lat, lng, can.latitude, can.longitude) }
                      .select{ |can| can.distance < distance}
                      .sort_by{ |can| can.distance}[0...limit]

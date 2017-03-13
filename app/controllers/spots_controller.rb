@@ -29,7 +29,7 @@ class SpotsController < ApplicationController
     word = params[:word]
 
     if (latitude.nil? or longitude.nil?) and word.nil?
-      render :json => {"message": "lat and lng query are required"}, :status => 400
+      render :json => {"message": "lat and lng query or word are required"}, :status => 400
       return
     end
 

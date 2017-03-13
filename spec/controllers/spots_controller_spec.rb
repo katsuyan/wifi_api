@@ -4,7 +4,6 @@ RSpec.describe SpotsController, type: :controller do
   describe 'GET #api' do
     let(:lat) { 35.0 }
     let(:lng) {140.0 }
-    before { get :api, params: {lat: lat, lng: lng}}
 
     describe 'ステータスコードが仕様どおり返ること' do
       describe 'ステータスコードとして200が返ること' do
@@ -33,11 +32,17 @@ RSpec.describe SpotsController, type: :controller do
     end
 
     it 'soptsテンプレートをrenderしていること' do
+      before { get :api, params: {lat: lat, lng: lng}}
       expect(response).to render_template :api
     end
 
     it '@spotsにオブジェクトのリストが格納されていること' do
+      before { get :api, params: {lat: lat, lng: lng}}
       expect(assigns(:spots).count).to be >= 0
+    end
+
+    describe 'テンプレートが反映されていること' do
+      
     end
   end
 end

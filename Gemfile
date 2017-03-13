@@ -23,6 +23,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
   gem 'pry-rails', '~> 0.3.5'
+  gem 'database_cleaner'
 end
 
 group :development do

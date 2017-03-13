@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307145459) do
+ActiveRecord::Schema.define(version: 20170313101126) do
 
   create_table "spots", force: :cascade do |t|
     t.string   "name"
@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(version: 20170307145459) do
     t.integer  "placecode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_spots_on_address"
+    t.index ["en_address"], name: "index_spots_on_en_address"
+    t.index ["en_name"], name: "index_spots_on_en_name"
+    t.index ["latitude"], name: "index_spots_on_latitude"
+    t.index ["longitude"], name: "index_spots_on_longitude"
+    t.index ["name"], name: "index_spots_on_name"
   end
 
 end

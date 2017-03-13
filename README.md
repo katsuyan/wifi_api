@@ -4,7 +4,7 @@
 
 ## APIの使い方
 このアプリケーションのAPIの利用の仕方は以下のURLを参考にしてください。  
-https://aqueous-earth-88993.herokuapp.com/
+https://limitless-stream-27227.herokuapp.com
 
 ## 使い方
 
@@ -21,10 +21,10 @@ $ bundle install --without production
 $ rails db:migrate
 ```
 
-次に、データを整えるためのbatchを実行します。
+次に、データを整えるためのdb:seedを実行します。
 
 ```
-$ rails runner Tasks::Batch.makespots
+$ rails db:seed
 ```
 
 最後に、テストを実行してうまく動いているかどうか確認してください。
@@ -51,6 +51,13 @@ $ rails server
  ```
  rails runner Tasks::Batch.fixapi
  ```
+
+## herokuについて
+herokuではdbに10000行を超えないように一部のデータのみ利用しています。  
+そこで、`rails db:seed`の代わりに以下のコマンドを利用します。
+```
+ rails runner Tasks::Batch.makespotsHeroku
+```
 
 ## ライセンス等
 このアプリケーションは以下のサイト、コンテンツを利用して作られています。

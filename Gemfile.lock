@@ -113,7 +113,7 @@ GEM
     pry-rails (0.3.5)
       pry (>= 0.9.10)
     public_suffix (2.0.5)
-    puma (3.8.0)
+    puma (3.8.1)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -202,7 +202,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.1.6)
+    uglifier (3.1.7)
       execjs (>= 0.3.0, < 3)
     web-console (3.4.0)
       actionview (>= 5.0)
@@ -221,25 +221,25 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capybara
+  capybara (~> 2.12.1)
   coffee-rails (~> 4.2)
-  database_cleaner
-  factory_girl_rails
-  faker
+  database_cleaner (~> 1.5.3)
+  factory_girl_rails (~> 4.8.0)
+  faker (~> 1.7.3)
   grape-swagger-rails (~> 0.3.0)
   jbuilder (~> 2.5)
-  jquery-rails
-  launchy
+  jquery-rails (~> 4.2.2)
+  launchy (~> 2.4.3)
   listen (~> 3.0.5)
   pg (= 0.18.4)
   pry-rails (~> 0.3.5)
   puma (~> 3.0)
   rails (~> 5.0.2)
-  rails-controller-testing
-  rspec-rails
+  rails-controller-testing (= 1.0.1)
+  rspec-rails (~> 3.5.2)
   sass-rails (~> 5.0)
-  selenium-webdriver
-  spring
+  selenium-webdriver (~> 3.3.0)
+  spring (~> 2.0.1)
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   swagger-docs (~> 0.2.9)

@@ -5,7 +5,7 @@ class Tasks::Batch
     puts "-------------------- start --------------------"
     Spot.delete_all
     CSV.foreach('jta_free_wifi.csv', :headers => true) do |row|
-      break if $. - 1 == 10000
+      break if $. - 1 == 5000
       Spot.create({name:       row['スポット名（日本語）'],
                    en_name:    row['スポット名（英語）'],
                    status:     row['スポットステータス'],
